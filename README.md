@@ -1,159 +1,151 @@
-# The power of organization in the palm of your hand! | React Native Calendars
+# 📅 React Native | Calendário Personalizado
 
-![RN-Calendars](./assets/screen.png)
-<p>If you're building a mobile app and need a functional, beautiful, and easy-to-use calendar component, the react-native-calendars package is the perfect choice.</p>
+Projeto desenvolvido utilizando a biblioteca **react-native-calendars**, demonstrando como implementar um calendário moderno, responsivo e altamente personalizável em aplicações React Native.
 
-## Getting Started 🔧
+Além da implementação básica, o projeto apresenta recursos como localização em português, personalização visual, seleção de datas e restrição de datas anteriores.
 
-Here's how to get started with react-native-calendars in your React Native project:
+---
 
-### Install the package:
+## 📸 Preview
 
+<img src="./assets/screen.png" alt="Preview do React Native Calendar">
+
+---
+
+## 🚀 Tecnologias
+
+- React Native
+- TypeScript
+- react-native-calendars
+
+---
+
+## ✨ Funcionalidades
+
+- Calendário totalmente personalizável
+- Seleção de datas
+- Destaque da data selecionada
+- Bloqueio de datas anteriores
+- Internacionalização (Português - Brasil)
+- Customização de cores, fontes e navegação
+- Exibição da data selecionada em formato personalizado
+
+---
+
+## 📚 Conceitos Aplicados
+
+Este projeto demonstra diversos conceitos importantes para o desenvolvimento de interfaces mobile.
+
+- Utilização da biblioteca **react-native-calendars**
+- Componentização no React Native
+- Gerenciamento de estado com Hooks (`useState`)
+- Internacionalização utilizando `LocaleConfig`
+- Personalização de temas
+- Marcação dinâmica de datas
+- Manipulação e formatação de datas
+- Configuração de propriedades do componente
+- Estilização com StyleSheet
+- Desenvolvimento de interfaces responsivas
+
+---
+
+## 📦 Instalação
+
+```bash
+yarn add react-native-calendars
 ```
-$ yarn add react-native-calendars
-````
 
-RN Calendars is implemented in JavaScript, so no native module linking is required.
+ou
 
-### Usage 🚀
-
-Basic usage examples of the library. Importing the Calendar component.
+```bash
+npm install react-native-calendars
 ```
-import React from 'react';
-import { View, Text } from 'react-native';
+
+A biblioteca é escrita em JavaScript e **não requer configuração nativa adicional**.
+
+---
+
+## ▶️ Executando o Projeto
+
+```bash
+npm install
+
+npm start
+```
+
+ou
+
+```bash
+yarn
+
+yarn start
+```
+
+---
+
+## 🧩 Exemplo Básico
+
+```tsx
 import { Calendar } from 'react-native-calendars';
 
-export default function App() {
-  return (
-    <View style={{ flex: 1, paddingTop: 50 }}>
-      <Text style={{ fontSize: 24, textAlign: 'center', marginBottom: 10 }}>
-        Meu Calendário
-      </Text>
-      <Calendar
-        onDayPress={day => {
-          console.log('Selecionado:', day.dateString);
-        }}
-        markedDates={{
-          '2025-07-25': { selected: true, marked: true, selectedColor: '#00adf5' },
-        }}
-      />
-    </View>
-  );
-}
+<Calendar
+  onDayPress={(day) => {
+    console.log(day.dateString);
+  }}
+/>
 ```
-Or customize like this.
-````
-import { use, useState } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';  
 
-// Importing the Portuguese locale configuration
-import { ptBR} from './utils/localecalendarConfig'
+---
+
+## 🎨 Personalizações Demonstradas
+
+O projeto apresenta diversas possibilidades de customização da biblioteca.
+
+- Tema personalizado
+- Cabeçalho customizado
+- Alteração das cores do calendário
+- Idioma Português (Brasil)
+- Datas marcadas dinamicamente
+- Destaque para a data selecionada
+- Ocultação dos dias excedentes do mês
+- Restrição para impedir seleção de datas passadas
+
+---
+
+## 🌎 Internacionalização
+
+O calendário foi configurado para utilizar o idioma **Português (Brasil)** através do `LocaleConfig`.
+
+```tsx
 LocaleConfig.locales['pt-br'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-br';
+```
 
-export default function App() {
+---
 
-  const [day, setDay] = useState<DateData>();
-  const [month, setMonth] = useState();
-  const [year, setYear] = useState();
-  const [selected, setSelected] = useState();
+## 🎯 Objetivos de Aprendizagem
 
-  return (
-    <View style={styles.container}>
-      <StatusBar hidden={true} />
-      <Text style={styles.Title}>
-        Calendário Personalizado</Text>
-      <Calendar
-        style={styles.calendar}
-        // Customize the calendar appearance
-        headerStyle={{
-          borderBottomWidth: 1,
-          borderBottomColor: '#d6d7da',
-          paddingBottom: 10,
-          marginBottom: 10,
-        }}
-        // Customize the calendar theme
-        theme={{
-          monthTextColor: '#ffffff',
-          textMonthFontWeight: 'bold',
-          textMonthFontSize: 20,
-          todayTextColor: '#f53100',
-          selectedDayBackgroundColor: '#f53100',
-          selectedDayTextColor: '#ff0000',
-          arrowColor: '#ffffff',
-          calendarBackground:'transparent',
+- Aprender a utilizar bibliotecas externas no React Native.
+- Implementar componentes de calendário em aplicações mobile.
+- Personalizar aparência e comportamento de componentes.
+- Trabalhar com datas e eventos.
+- Aplicar boas práticas na organização do código.
 
-          textDayStyle: {
-            color: '#ffffff',
-          },
-          textDisabledColor: '#999',
+---
 
-          arrowStyle:{
-            marginHorizontal: 10,
-          }
-          
-        }}
+## 💡 Possíveis Evoluções
 
-        // Disable past dates
-        minDate={new Date().toISOString().split('T')[0]} 
-        hideExtraDays={true}
+- Agenda de compromissos
+- Integração com API
+- Eventos recorrentes
+- Calendário de reservas
+- Controle de disponibilidade
+- Agenda médica
+- Aplicativo de tarefas
+- Planejamento de viagens
 
-        // Set the initial date
-        onDayPress={setDay}
-        // handle date selection
-        markedDates={
-          day && {
-            [day.dateString]: {selected: true, marked: true, selectedColor: '#fff' }
-          }
-        }
+---
 
-        
-        />
-        <View style={{alignItems:'center'}}>
-          <Text  style={styles.dateSelected}>
-            { 
-              day 
-                ? ` ${(() => {
-                      const [year, month, date] = day.dateString.split('-');
-                      return `${date}-${month}-${year.slice(2)}`;
-                  })()}`
-                : 'Nenhuma data selecionada'
-            }
-          </Text>
-        </View>
-    </View>
-  );
-}
+## 👨‍💻 Autor
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    paddingTop:100,
-    paddingHorizontal: 20,
-  },
-  calendar:{  
-    backgroundColor:'transparent',
-  },
-  Title:{
-    color: '#fff',
-    fontSize: 24,
-    marginVertical: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  dateSelected: {
-    marginTop: 20,
-    borderRadius: 5,
-    width:'50%',
-    paddingVertical: 20,
-    color: '#000',
-    fontSize: 25,
-    textAlign: 'center',
-    backgroundColor:'#fff'
-  },
-
-});
-
-````
+Desenvolvido por **Jorge Cruz**.
